@@ -47,7 +47,7 @@
 
         <GroupBox Name="Move_Exchange" Grid.Column="1" BorderThickness="1" Header="Move/Exchange"
                   Foreground="#331005" Background="#FFF9E5" BorderBrush="#D8A256">
-            <Grid>
+    <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80*"/>
                     <ColumnDefinition Width="20*"/>

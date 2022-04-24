@@ -11,15 +11,5 @@ namespace Emulator_8086
         {
             InitializeComponent();
         }
-
-        private void MoveButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void XCHGButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
