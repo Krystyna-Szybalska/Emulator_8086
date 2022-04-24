@@ -11,7 +11,7 @@ namespace Emulator_8086
         DX
     }
 
-    public class RegisterParameters : INotifyPropertyChanged
+    sealed class RegisterParameters : INotifyPropertyChanged
     {
         private string? _ax;
         private string? _bx;
