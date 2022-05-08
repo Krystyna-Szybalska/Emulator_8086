@@ -7,6 +7,60 @@
         mc:Ignorable="d"
         Title="Emulator Intel 8086" SizeToContent="WidthAndHeight">
 
+    <Grid>
+
+    </Grid>
+=========
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+
+    <Grid>
+
+    </Grid>
+=========
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+
+    <Grid>
+
+    </Grid>
+=========
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+
+    <Grid>
+
+    </Grid>
+=========
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+
+    <Grid>
+
+    </Grid>
+=========
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+
+    <Grid>
+
+    </Grid>
+=========
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+
+    <Grid>
+
+    </Grid>
+=========
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+
+    <Grid>
+
+    </Grid>
+=========
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+
+    <Grid>
+
+    </Grid>
+=========
+        Title="MainWindow" SizeToContent="WidthAndHeight">
+
     <Grid Margin="25">
         <Grid.ColumnDefinitions> <!--thats for later if I wanna add other registers-->
             <ColumnDefinition Width="30*"/>
