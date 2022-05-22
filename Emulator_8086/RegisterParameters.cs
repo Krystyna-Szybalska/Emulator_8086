@@ -1,16 +1,8 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Emulator_8086
 {
-    public enum Registers
-    {
-        AX,
-        BX,
-        CX,
-        DX
-    }
-
     sealed class RegisterParameters : INotifyPropertyChanged
     {
         private string? _ax;

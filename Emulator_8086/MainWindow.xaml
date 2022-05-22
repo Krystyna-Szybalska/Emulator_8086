@@ -6,7 +6,33 @@
         xmlns:local="clr-namespace:Emulator_8086" d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
         mc:Ignorable="d"
         Title="Emulator Intel 8086" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="{x:Type Control}" x:Key="baseStyle">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="Height" Value="auto"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
 
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource baseStyle}"></Style>
+        <!-- ComboBox, RadioButton, CheckBox, etc... -->
+    </Window.Resources>
+    
+   
+   
     <Grid Margin="25">
         <Grid.ColumnDefinitions> <!--thats for later if I wanna add other registers-->
             <ColumnDefinition Width="30*"/>
@@ -29,20 +55,20 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="AX" Foreground="#331005" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5 5"/>
-                <TextBox x:Name="AX_TextBox" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0" Grid.Column="1" Grid.Row="0"
-                Text="{Binding RegisterParametrs.Ax, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}"/>
+                <TextBox x:Name="AX_TextBox" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0" Grid.Column="1" Grid.Row="0"
+                Text="{Binding RegisterParameters.Ax, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}"/>
 
                 <TextBlock Text="BX" Foreground="#331005" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5 5"/>
-                <TextBox x:Name="BX_TextBox" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0" Grid.Column="1" Grid.Row="1"
-                Text="{Binding RegisterParametrs.Bx, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}" />
+                <TextBox x:Name="BX_TextBox" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0" Grid.Column="1" Grid.Row="1"
+                Text="{Binding RegisterParameters.Bx, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}" />
                          
                 <TextBlock Text="CX" Foreground="#331005" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5 5"/>
-                <TextBox x:Name="CX_TextBox" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0" Grid.Column="1" Grid.Row="2"
-                Text="{Binding RegisterParametrs.Cx, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}" />
+                <TextBox x:Name="CX_TextBox" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0" Grid.Column="1" Grid.Row="2"
+                Text="{Binding RegisterParameters.Cx, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}" />
                 
                 <TextBlock Text="DX" Foreground="#331005" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3" Margin="5 5"/>
-                <TextBox x:Name="DX_TextBox" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0" Grid.Column="1" Grid.Row="3"
-                Text="{Binding RegisterParametrs.Dx, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}" />
+                <TextBox x:Name="DX_TextBox" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5 0" Grid.Column="1" Grid.Row="3"
+                Text="{Binding RegisterParameters.Dx, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, TargetNullValue=''}" />
                 
                 <TextBlock Text="Enter only hexadecimal values." FontWeight="Thin" Foreground="#331005" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="4" Margin="5 5"/>
 
@@ -60,30 +86,37 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <RadioButton x:Name="MOV" Grid.Row="0" Margin="5 5" VerticalAlignment="Center">
+               
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="MOV" Foreground="#331005" VerticalAlignment="Center" />
-                        <ComboBox x:Name="FromRegister" Width="50" VerticalAlignment="Center" Margin="5 0" ToolTip="Choose register"/>
-                                 <!--ItemsSource="{Binding Source={local:EnumBindingSource {x:Type core:InchName}}}" -->
-                        <TextBlock Text="to" Foreground="#331005" VerticalAlignment="Center" />
-                        <ComboBox x:Name="ToRegister" Width="50" VerticalAlignment="Center" Margin="5 0"
-                            ToolTip="Choose register"/>
+                        <TextBlock Text="MOV" Foreground="#331005" VerticalAlignment="Center" Margin="5"/>
+                        <ComboBox x:Name="ToRegisterComboBox" Width="75" VerticalAlignment="Center" Margin="5 " ToolTip="Choose register">
+                            <ComboBoxItem Content="AX"/><ComboBoxItem Content="BX"/><ComboBoxItem Content="CX"/><ComboBoxItem Content="DX"/>
+                        </ComboBox>
+                        <TextBlock Text="," Foreground="#331005" VerticalAlignment="Center" />
+                        <ComboBox x:Name="FromRegisterComboBox" Width="75" VerticalAlignment="Center" Margin="5 "
+                            ToolTip="Choose register">
+                            <ComboBoxItem Content="AX"/><ComboBoxItem Content="BX"/><ComboBoxItem Content="CX"/><ComboBoxItem Content="DX"/>
+                        </ComboBox>
                     </StackPanel>
-                </RadioButton>
-                <RadioButton x:Name="XCHG"  Grid.Row="1" Margin="5 5" VerticalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="XCHG" Foreground="#331005" VerticalAlignment="Center" />
-                        <ComboBox x:Name="FirstRegister" Width="50" VerticalAlignment="Center" Margin="5 0"
-                            ToolTip="Choose register"/>
-                        <TextBlock Text="and" Foreground="#331005" VerticalAlignment="Center" />
-                        <ComboBox x:Name="SecondRegister" Width="50" VerticalAlignment="Center" Margin="5 0"
-                            ToolTip="Choose register"/>
+                
+               
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock Text="XCHG" Foreground="#331005" VerticalAlignment="Center" Margin="5"/>
+                        <ComboBox x:Name="FirstRegisterComboBox" Width="75" VerticalAlignment="Center" Margin="5 "
+                            ToolTip="Choose register">
+                            <ComboBoxItem Content="AX"/><ComboBoxItem Content="BX"/><ComboBoxItem Content="CX"/><ComboBoxItem Content="DX"/>
+                        </ComboBox>
+                        <TextBlock Text="," Foreground="#331005" VerticalAlignment="Center" />
+                        <ComboBox x:Name="SecondRegisterComboBox" Width="75" VerticalAlignment="Center" Margin="5 "
+                            ToolTip="Choose register">
+                            <ComboBoxItem Content="AX"/><ComboBoxItem Content="BX"/><ComboBoxItem Content="CX"/><ComboBoxItem Content="DX"/>
+                        </ComboBox>
                     </StackPanel>
-                </RadioButton>
+        
                 <Button x:Name="MoveButton" Click="MoveButton_Click" Content="Move"
-                        Grid.Column="1" Grid.Row="0" Width="auto" Height="20"/>
+                        Grid.Column="1" Grid.Row="0"/>
                 <Button x:Name="XCHGButton" Click="XCHGButton_Click" Content="Exchange"
-                        Grid.Column="1" Grid.Row="1" Width="auto" Height="20"/>
+                        Grid.Column="1" Grid.Row="1"/>
             </Grid>
         </GroupBox>
 
